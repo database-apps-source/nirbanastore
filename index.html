@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nirbana Store - Biro Jasa & Solusi Legal Digital</title>
+<meta name="description" content="Urus NPWP Pribadi, NIB Usaha, dan Kartu Nikah Digital tanpa ribet. Proses cepat, resmi, dan dibantu langsung via WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦋</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ====== KUPU-KUPU PENGIKUT KURSOR ====== -->
+<canvas id="butterfly-canvas"></canvas>
+
+<!-- ====== HEADER ====== -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark">N</span>
+      <span class="brand-name">Nirbana<span class="brand-sub">Store</span></span>
+    </a>
+    <button class="btn btn-primary btn-shine" id="btnOrderHeader">Pesan Sekarang</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ====== HERO (slideshow otomatis) ====== -->
+  <section class="hero">
+    <div class="hero-slides" id="heroSlides">
+      <div class="hero-slide is-active" style="--c:#0B2F8A">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">⭐ Biz Jasa No. #1 di Indonesia</span>
+            <h1>Solusi Urus Dokumen & Jasa Digital Cepat & Beres</h1>
+            <p>Layanan terpercaya pembuatan NPWP Pribadi, NIB Usaha, Kartu Nikah Digital, dan Produk Digital legal lainnya. Tanpa antre, tanpa ribet.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-lg btn-shine" data-open-order data-produk="PRD-NPWP">Urut Produk</button>
+              <a class="btn btn-ghost btn-lg" href="#produk">Lihat Semua Layanan</a>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">📄✨</div>
+        </div>
+      </div>
+      <div class="hero-slide" style="--c:#0B2F8A">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">⚡ Proses 1 Hari Kerja</span>
+            <h1>NIB Usaha Resmi Tanpa Antre ke Dinas</h1>
+            <p>Daftarkan usahamu secara legal lewat OSS, dibantu tim kami dari awal sampai NIB terbit.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-lg btn-shine" data-open-order data-produk="PRD-NIB">Daftar NIB Sekarang</button>
+              <a class="btn btn-ghost btn-lg" href="#produk">Lihat Semua Layanan</a>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">🏢✅</div>
+        </div>
+      </div>
+      <div class="hero-slide" style="--c:#0B2F8A">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">💍 Cetak Instan</span>
+            <h1>Kartu Nikah Digital, Kualitas HD Siap Cetak</h1>
+            <p>Desain rapi, resmi, dan bisa langsung dicetak. Cocok untuk pasangan muda yang ingin praktis.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-lg btn-shine" data-open-order data-produk="PRD-NIKAH">Pesan Sekarang</button>
+              <a class="btn btn-ghost btn-lg" href="#produk">Lihat Semua Layanan</a>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">💍💌</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-dots" id="heroDots"></div>
+  </section>
+
+  <!-- ====== MASALAH / AGITASI ====== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title center">Masalah Mengurus Dokumen Sendiri?</h2>
+      <div class="problem-grid">
+        <div class="problem-card"><span class="problem-ico">⏳</span><h3>Antre & Berbelit</h3><p>Harus datang ke kantor dinas, menunggu lama, prosedur membingungkan.</p></div>
+        <div class="problem-card"><span class="problem-ico">⚠️</span><h3>Takut Salah Data</h3><p>Salah input berkas bisa bikin pengajuan ditolak dan harus mengulang dari awal.</p></div>
+        <div class="problem-card"><span class="problem-ico">🧭</span><h3>Butuh Cepat & Jelas</h3><p>Perlu solusi praktis tanpa drama birokrasi dan kepastian waktu kerja.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SOLUSI / BANNER ====== -->
+  <section class="banner-solusi" id="bannerPromo">
+    <div class="container banner-inner">
+      <span class="banner-ico">✨</span>
+      <div>
+        <strong id="bannerTeks">Nirbana Store Solusinya! Terima Jadi & Bebas Ribet!</strong>
+        <p>Cukup kirim data, sisanya kami yang urus sampai terbit.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PRODUK ====== -->
+  <section class="section" id="produk">
+    <div class="container">
+      <h2 class="section-title center">Pilih Layanan & Produk Kami</h2>
+      <div class="filter-pills" id="filterPills">
+        <button class="pill is-active" data-filter="Semua">Semua</button>
+        <button class="pill" data-filter="Jasa">Jasa</button>
+        <button class="pill" data-filter="Digital">Digital</button>
+      </div>
+      <div class="product-grid" id="productGrid">
+        <!-- diisi oleh app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== SYARAT & ALUR ====== -->
+  <section class="section section-tinted">
+    <div class="container">
+      <h2 class="section-title center">Syarat & Alur Pengerjaan</h2>
+      <div class="accordion" id="accordion">
+        <div class="accordion-item">
+          <button class="accordion-head">Apa syarat pembuatan NPWP Pribadi? <span>+</span></button>
+          <div class="accordion-body"><p>KTP yang masih berlaku dan nomor WhatsApp aktif untuk konfirmasi data.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-head">Berapa lama proses NIB Usaha Risiko Rendah? <span>+</span></button>
+          <div class="accordion-body"><p>Rata-rata 1-2 hari kerja setelah data lengkap diterima dan pembayaran diverifikasi.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-head">Bagaimana cara pembayaran? <span>+</span></button>
+          <div class="accordion-body"><p>Transfer manual ke rekening resmi yang muncul di formulir pemesanan, lalu kirim bukti via WhatsApp.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== TESTIMONI ====== -->
+  <section class="section" id="testimoni">
+    <div class="container">
+      <h2 class="section-title center">Kata Mereka yang Sudah Tuntas</h2>
+      <div class="testi-grid" id="testiGrid">
+        <!-- diisi oleh app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PRICING / BONUS ====== -->
+  <section class="section section-tinted">
+    <div class="container">
+      <div class="pricing-card">
+        <span class="badge-countdown" id="countdownBadge">⏰ Promo Minggu Ini Saja</span>
+        <h3>Paket Usaha Siap Jalan Tuntas</h3>
+        <p class="pricing-desc">NPWP + NIB + Bonus Legalitas — seluruh UMKM-mu legal dalam satu paket.</p>
+        <div class="pricing-price">Rp249.000</div>
+        <ul class="pricing-list">
+          <li>✅ Pembuatan NPWP Pribadi</li>
+          <li>✅ Pembuatan NIB Risiko Rendah</li>
+          <li>✅ Bonus Template SOP & Dokumen Legal</li>
+          <li>✅ Konsultasi via WhatsApp</li>
+        </ul>
+        <button class="btn btn-primary btn-lg btn-shine" data-open-order data-produk="PRD-NIB">Ambil Promo Sekarang</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FAQ ====== -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title center">Kerap Ditanyakan (FAQ)</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <button class="accordion-head">Apakah data saya aman? <span>+</span></button>
+          <div class="accordion-body"><p>Data hanya digunakan untuk proses pengajuan dan tidak dibagikan ke pihak lain.</p></div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-head">Bagaimana jika pengajuan ditolak sistem? <span>+</span></button>
+          <div class="accordion-body"><p>Tim kami akan membantu revisi data tanpa biaya tambahan hingga disetujui.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ====== FOOTER ====== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <strong>PT Nirbana Collection Persada</strong>
+      <p id="footerDisclaimer">PT Nirbana Collection Persada adalah penyedia jasa, bukan instansi pemerintah.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#" id="waFooterLink">💬 Hubungi via WhatsApp</a>
+      <a href="#">Kebijakan Privasi</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ====== TOMBOL WHATSAPP MENGAMBANG ====== -->
+<a href="#" id="floatingWa" class="floating-wa" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+  <span class="wa-pulse"></span>
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="#fff"><path d="M16 2C8.3 2 2 8.3 2 16c0 2.6.7 5.1 2 7.3L2 30l6.9-1.8c2.1 1.2 4.6 1.8 7.1 1.8 7.7 0 14-6.3 14-14S23.7 2 16 2zm0 25.5c-2.3 0-4.5-.6-6.4-1.8l-.5-.3-4.1 1.1 1.1-4-.3-.5C4.6 20.1 4 18.1 4 16 4 9.4 9.4 4 16 4s12 5.4 12 12-5.4 11.5-12 11.5zm6.3-8.8c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.6.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.6c.2.3 2.4 3.7 5.9 5.1.8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<!-- ====== MODAL FORMULIR PEMESANAN ====== -->
+<div class="modal-overlay" id="orderModalOverlay">
+  <div class="modal-sheet" id="orderModal">
+    <div class="modal-handle"></div>
+    <div class="modal-head">
+      <h3>Formulir Pemesanan Layanan</h3>
+      <button class="modal-close" id="btnCloseOrder" aria-label="Tutup">✕</button>
+    </div>
+    <div class="order-summary">
+      <div>
+        <span class="muted">Layanan Dipilih</span>
+        <strong id="osNama">-</strong>
+        <span class="badge-mini" id="osMeta">-</span>
+      </div>
+      <div class="order-total">
+        <span class="muted">Total Biaya</span>
+        <strong id="osHarga">Rp0</strong>
+      </div>
+    </div>
+    <form id="orderForm">
+      <label class="field">
+        <span>Nama Lengkap</span>
+        <input type="text" name="nama" id="fNama" placeholder="Nama sesuai KTP" required minlength="3">
+      </label>
+      <label class="field">
+        <span>Nomor WhatsApp Aktif</span>
+        <div class="field-phone"><span>+62</span><input type="tel" name="whatsapp" id="fWa" placeholder="81298457620" required></div>
+        <small>Contoh: 08xxxxxxxxxx (Pastikan nomor aktif untuk konfirmasi & pengiriman dokumen).</small>
+      </label>
+      <div class="rekening-box" id="rekeningBox">
+        <div class="rekening-head"><span>🏦 Informasi Rekening Resmi</span><button type="button" id="btnSalinRek">Salin</button></div>
+        <strong id="rekeningTeks">Memuat...</strong>
+        <p>Transfer manual, admin akan memverifikasi dan mengirimkan update pesanan langsung via WhatsApp.</p>
+      </div>
+      <button class="btn btn-wa btn-lg" type="submit" id="btnKirimPesanan">💬 Kirim Pesanan via WhatsApp</button>
+      <p class="secure-note">🔒 Data Terenkripsi &nbsp;•&nbsp; 🛡️ Privasi Aman</p>
+    </form>
+  </div>
+</div>
+
+<!-- ====== MODAL TESTIMONI LENGKAP ====== -->
+<div class="modal-overlay" id="testiModalOverlay">
+  <div class="modal-card" id="testiModalCard"></div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

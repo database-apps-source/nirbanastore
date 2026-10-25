@@ -1,0 +1,201 @@
+/* ===================== DESIGN TOKENS (Nirbana Store Design System) ===================== */
+:root{
+  --primary:#0B2F8A; --on-primary:#ffffff; --primary-container:#223f99;
+  --secondary:#FFC51A; --on-secondary:#1A1F36;
+  --tertiary:#25D366;
+  --neutral-dark:#1A1F36; --neutral-mid:#5B6378;
+  --bg:#F4F6FB; --surface:#ffffff; --outline:#E3E8F3;
+  --success:#1F9D55; --warning:#F5A623; --error:#D92D20;
+  --radius-sm:.5rem; --radius:1rem; --radius-md:1.5rem; --radius-lg:2rem; --radius-full:9999px;
+  --shadow-1:0 4px 14px rgba(11,47,138,.08); --shadow-2:0 8px 24px rgba(11,47,138,.12); --shadow-3:0 16px 36px rgba(11,47,138,.16);
+  --font-display:'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body:'DM Sans', system-ui, sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:70px}
+body{margin:0; font-family:var(--font-body); color:var(--neutral-dark); background:var(--bg); -webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--font-display); margin:0 0 .5rem; letter-spacing:-.01em}
+p{margin:0 0 .5rem; color:var(--neutral-mid); line-height:1.6}
+.container{max-width:1200px; margin:0 auto; padding:0 1rem}
+.muted{color:var(--neutral-mid); font-size:.75rem}
+img{max-width:100%; display:block}
+
+/* ===================== BUTTONS (dengan efek berkilau) ===================== */
+.btn{font-family:var(--font-body); font-weight:700; border:none; cursor:pointer; border-radius:var(--radius-full);
+  padding:.75rem 1.5rem; font-size:.95rem; display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  min-height:48px; transition:transform .15s ease, box-shadow .15s ease; position:relative; overflow:hidden}
+.btn:active{transform:scale(.97)}
+.btn-lg{padding:.9rem 1.75rem; font-size:1rem; width:100%}
+.btn-primary{background:var(--secondary); color:var(--on-secondary); box-shadow:var(--shadow-1)}
+.btn-primary:hover{box-shadow:var(--shadow-2); transform:translateY(-1px)}
+.btn-ghost{background:#fff; color:var(--primary); border:1.5px solid var(--primary)}
+.btn-wa{background:var(--tertiary); color:#fff; box-shadow:var(--shadow-1)}
+.btn-wa:hover{box-shadow:var(--shadow-2)}
+
+/* efek "berkilau/menyala-nyala" — shine sweep + glow pulsing */
+.btn-shine{animation:glowPulse 2.6s ease-in-out infinite}
+.btn-shine::after{
+  content:''; position:absolute; top:0; left:-150%; width:60%; height:100%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,.75), transparent);
+  transform:skewX(-20deg); animation:shineSweep 2.8s ease-in-out infinite;
+}
+@keyframes shineSweep{0%{left:-150%} 45%{left:150%} 100%{left:150%}}
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(255,197,26,.55), var(--shadow-1)}
+  50%{box-shadow:0 0 22px 6px rgba(255,197,26,.65), var(--shadow-2)}
+}
+
+/* ===================== HEADER ===================== */
+.site-header{position:sticky; top:0; z-index:40; background:rgba(255,255,255,.9); backdrop-filter:blur(8px); border-bottom:1px solid var(--outline)}
+.header-inner{display:flex; align-items:center; justify-content:space-between; padding:.7rem 1rem}
+.brand{display:flex; align-items:center; gap:.5rem; text-decoration:none; color:var(--neutral-dark)}
+.brand-mark{width:34px; height:34px; border-radius:var(--radius-sm); background:var(--primary); color:#fff; font-family:var(--font-display); font-weight:800; display:flex; align-items:center; justify-content:center}
+.brand-name{font-family:var(--font-display); font-weight:800; font-size:1.05rem}
+.brand-sub{color:var(--secondary)}
+#btnOrderHeader{padding:.55rem 1.1rem; font-size:.8rem; min-height:38px}
+
+/* ===================== HERO (slideshow) ===================== */
+.hero{position:relative; overflow:hidden; background:linear-gradient(180deg,#eef1ff,var(--bg))}
+.hero-slides{position:relative; min-height:420px}
+.hero-slide{position:absolute; inset:0; opacity:0; visibility:hidden; transition:opacity .6s ease; display:flex; align-items:center}
+.hero-slide.is-active{opacity:1; visibility:visible; position:relative}
+.hero-grid{display:grid; gap:1.5rem; padding:2.5rem 0}
+.eyebrow{display:inline-block; background:#fff; border:1px solid var(--outline); color:var(--primary); font-weight:700; font-size:.72rem; padding:.3rem .75rem; border-radius:var(--radius-full); margin-bottom:.75rem}
+.hero-copy h1{font-size:1.9rem; line-height:1.15; color:var(--primary)}
+.hero-actions{display:flex; gap:.6rem; margin-top:1.1rem; flex-wrap:wrap}
+.hero-actions .btn{width:auto}
+.hero-visual{font-size:5rem; text-align:center; filter:drop-shadow(0 10px 20px rgba(11,47,138,.18))}
+.hero-dots{display:flex; gap:.4rem; justify-content:center; padding-bottom:1rem}
+.hero-dots span{width:8px; height:8px; border-radius:50%; background:var(--outline); cursor:pointer; transition:.2s}
+.hero-dots span.is-active{background:var(--primary); width:22px; border-radius:var(--radius-full)}
+
+/* ===================== SECTIONS ===================== */
+.section{padding:2.75rem 0}
+.section-tinted{background:#fff}
+.section-title{font-size:1.4rem; color:var(--primary)}
+.center{text-align:center}
+
+.problem-grid{display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin-top:1.25rem}
+.problem-card{background:#fff; border:1px solid var(--outline); border-radius:var(--radius-md); padding:1.25rem; box-shadow:var(--shadow-1); transition:transform .2s ease, box-shadow .2s ease}
+.problem-card:hover{transform:translateY(-4px); box-shadow:var(--shadow-2)}
+.problem-ico{font-size:1.6rem}
+
+.banner-solusi{background:linear-gradient(135deg,var(--secondary),#ffe08a); margin:0 1rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-1)}
+.banner-inner{display:flex; align-items:center; gap:1rem; padding:1.25rem 1.5rem; color:var(--on-secondary)}
+.banner-ico{font-size:1.8rem}
+.banner-inner p{color:#4b3c00; margin:0}
+
+/* ===================== FILTER PILLS ===================== */
+.filter-pills{display:flex; gap:.5rem; justify-content:center; margin:1.25rem 0; flex-wrap:wrap}
+.pill{border:1.5px solid var(--outline); background:#fff; color:var(--neutral-dark); padding:.5rem 1.1rem; border-radius:var(--radius-full); cursor:pointer; font-weight:600; font-size:.85rem; transition:.2s}
+.pill.is-active{background:var(--primary); color:#fff; border-color:var(--primary)}
+
+/* ===================== PRODUCT CARDS (slideshow gambar) ===================== */
+.product-grid{display:grid; gap:1.1rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.product-card{background:#fff; border:1px solid var(--outline); border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-1); transition:transform .25s ease, box-shadow .25s ease; display:flex; flex-direction:column; position:relative}
+.product-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-3)}
+.product-media{position:relative; aspect-ratio:4/3; background:linear-gradient(135deg,#dde1ff,#f3f2ff); display:flex; align-items:center; justify-content:center; overflow:hidden}
+.product-media .slide{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:3rem; opacity:0; transition:opacity .8s ease}
+.product-media .slide.is-active{opacity:1}
+.product-media .slide img{width:100%; height:100%; object-fit:cover}
+.product-badge{position:absolute; top:.6rem; left:.6rem; background:var(--secondary); color:var(--on-secondary); font-size:.68rem; font-weight:700; padding:.25rem .6rem; border-radius:var(--radius-full); z-index:2}
+.product-body{padding:1rem 1.1rem 1.1rem; display:flex; flex-direction:column; gap:.4rem; flex:1}
+.product-cat{font-size:.68rem; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:.04em}
+.product-body h3{font-size:1.02rem}
+.product-desc{font-size:.82rem; flex:1}
+.product-price-row{display:flex; align-items:baseline; gap:.5rem}
+.product-price{font-family:var(--font-display); font-weight:800; color:var(--primary); font-size:1.15rem}
+.product-price-strike{font-size:.78rem; color:var(--neutral-mid); text-decoration:line-through}
+.product-card .btn{margin-top:.4rem}
+
+/* ===================== ACCORDION ===================== */
+.accordion{max-width:760px; margin:1.25rem auto 0; display:flex; flex-direction:column; gap:.6rem}
+.accordion-item{background:#fff; border:1px solid var(--outline); border-radius:var(--radius); overflow:hidden}
+.accordion-head{width:100%; text-align:left; background:none; border:none; padding:1rem 1.1rem; font-weight:700; font-size:.92rem; cursor:pointer; display:flex; justify-content:space-between; align-items:center; color:var(--neutral-dark)}
+.accordion-head span{color:var(--primary); font-size:1.1rem; transition:transform .25s ease}
+.accordion-item.is-open .accordion-head span{transform:rotate(45deg)}
+.accordion-body{max-height:0; overflow:hidden; transition:max-height .3s ease; padding:0 1.1rem}
+.accordion-item.is-open .accordion-body{max-height:220px; padding-bottom:1rem}
+
+/* ===================== TESTIMONI (flip + glow + modal) ===================== */
+.testi-grid{display:grid; gap:1.1rem; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); margin-top:1.25rem}
+.testi-card{perspective:1200px; height:220px; cursor:pointer}
+.testi-flip{position:relative; width:100%; height:100%; transition:transform .8s cubic-bezier(.4,.2,.2,1); transform-style:preserve-3d}
+.testi-card.is-flipped .testi-flip{transform:rotateY(180deg)}
+.testi-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:var(--radius-md); background:#fff; border:1px solid var(--outline); padding:1.1rem; box-shadow:var(--shadow-1); display:flex; flex-direction:column; transition:box-shadow .25s ease, border-color .25s ease}
+.testi-card:hover .testi-face{box-shadow:0 0 0 2px var(--secondary), 0 0 26px rgba(255,197,26,.55); border-color:var(--secondary)}
+.testi-back{transform:rotateY(180deg); background:linear-gradient(135deg,var(--primary),#1844b8); color:#fff; justify-content:center; align-items:center; text-align:center}
+.testi-stars{color:var(--secondary); font-size:.9rem; margin-bottom:.4rem}
+.testi-name{font-weight:700; font-size:.92rem}
+.testi-role{font-size:.72rem; color:var(--neutral-mid); margin-bottom:.5rem}
+.testi-text{font-size:.82rem; overflow:hidden; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical}
+.testi-tap{font-size:.68rem; color:var(--primary); margin-top:auto; font-weight:700}
+
+/* ===================== PRICING ===================== */
+.pricing-card{max-width:520px; margin:0 auto; background:#fff; border:1px solid var(--outline); border-radius:var(--radius-lg); padding:1.75rem; text-align:center; box-shadow:var(--shadow-2); position:relative; overflow:hidden}
+.pricing-card::before{content:''; position:absolute; inset:-40% -40% auto auto; width:220px; height:220px; background:radial-gradient(circle, rgba(255,197,26,.35), transparent 70%)}
+.badge-countdown{display:inline-block; background:var(--error); color:#fff; font-weight:700; font-size:.72rem; padding:.3rem .8rem; border-radius:var(--radius-full); margin-bottom:.75rem}
+.pricing-price{font-family:var(--font-display); font-size:2.1rem; font-weight:800; color:var(--primary); margin:.5rem 0}
+.pricing-list{list-style:none; padding:0; margin:0 0 1.25rem; text-align:left; display:inline-block}
+.pricing-list li{font-size:.88rem; margin-bottom:.4rem; color:var(--neutral-dark)}
+
+/* ===================== FOOTER ===================== */
+.site-footer{background:var(--neutral-dark); color:#cfd3e6; padding:2rem 0; margin-top:1rem}
+.footer-inner{display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; align-items:flex-start}
+.site-footer strong{color:#fff}
+.site-footer p{color:#9aa0bd; font-size:.82rem; max-width:360px}
+.footer-links{display:flex; flex-direction:column; gap:.5rem}
+.footer-links a{color:#cfd3e6; text-decoration:none; font-size:.85rem}
+.footer-links a:hover{color:var(--secondary)}
+
+/* ===================== FLOATING WHATSAPP ===================== */
+.floating-wa{position:fixed; right:1.1rem; bottom:1.1rem; width:58px; height:58px; border-radius:50%; background:var(--tertiary);
+  display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-3); z-index:50; text-decoration:none}
+.wa-pulse{position:absolute; inset:0; border-radius:50%; background:var(--tertiary); opacity:.55; animation:waPulse 2s ease-out infinite}
+@keyframes waPulse{0%{transform:scale(1); opacity:.55} 100%{transform:scale(1.8); opacity:0}}
+
+/* ===================== KUPU-KUPU ===================== */
+#butterfly-canvas{position:fixed; inset:0; width:100vw; height:100vh; pointer-events:none; z-index:60}
+
+/* ===================== MODAL PEMESANAN ===================== */
+.modal-overlay{position:fixed; inset:0; background:rgba(11,47,138,.4); backdrop-filter:blur(2px); display:flex; align-items:flex-end; justify-content:center; z-index:80; opacity:0; visibility:hidden; transition:opacity .25s ease}
+.modal-overlay.is-open{opacity:1; visibility:visible}
+.modal-sheet{background:#fff; width:100%; max-width:430px; border-radius:var(--radius-lg) var(--radius-lg) 0 0; padding:1.25rem 1.25rem 1.5rem; max-height:92vh; overflow-y:auto; transform:translateY(16px); transition:transform .25s ease}
+.modal-overlay.is-open .modal-sheet{transform:translateY(0)}
+@media (min-width:640px){
+  .modal-overlay{align-items:center}
+  .modal-sheet{border-radius:var(--radius-lg)}
+}
+.modal-handle{width:40px; height:4px; background:var(--outline); border-radius:var(--radius-full); margin:0 auto .9rem}
+.modal-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem}
+.modal-head h3{font-size:1.1rem; color:var(--primary)}
+.modal-close{background:#f1f3fb; border:none; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:.9rem}
+.order-summary{display:flex; justify-content:space-between; align-items:flex-start; background:#eef1ff; border-radius:var(--radius); padding:.9rem 1rem; margin-bottom:1.1rem}
+.order-summary strong{display:block; color:var(--primary); font-size:.95rem; margin:.15rem 0}
+.badge-mini{display:inline-block; background:#fff; border:1px solid var(--outline); font-size:.68rem; padding:.15rem .5rem; border-radius:var(--radius-full)}
+.order-total{text-align:right}
+.order-total strong{color:var(--primary); font-size:1.15rem}
+.field{display:block; margin-bottom:1rem; font-size:.85rem; font-weight:600}
+.field input{width:100%; margin-top:.4rem; border:1.5px solid var(--outline); border-radius:var(--radius-sm); padding:.75rem .9rem; font-size:.95rem; font-family:var(--font-body)}
+.field input:focus{outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(11,47,138,.15)}
+.field-phone{display:flex; align-items:center; border:1.5px solid var(--outline); border-radius:var(--radius-sm); margin-top:.4rem; overflow:hidden}
+.field-phone span{padding:.75rem .7rem; background:#f4f6fb; font-weight:700; color:var(--primary)}
+.field-phone input{border:none; margin:0}
+.field small{display:block; margin-top:.35rem; font-weight:400; color:var(--neutral-mid); font-size:.72rem}
+.rekening-box{background:#fff7e0; border:1px solid #ffe29e; border-radius:var(--radius); padding:.9rem 1rem; margin-bottom:1.1rem}
+.rekening-head{display:flex; justify-content:space-between; align-items:center; font-size:.8rem; color:#6d5200; font-weight:700}
+.rekening-head button{border:none; background:#fff; border-radius:var(--radius-full); padding:.25rem .7rem; font-size:.7rem; cursor:pointer}
+#rekeningTeks{display:block; margin:.35rem 0; color:#4b3c00}
+.rekening-box p{font-size:.72rem; margin:0; color:#6d5200}
+.secure-note{text-align:center; font-size:.72rem; margin-top:.8rem}
+
+/* ===================== MODAL TESTIMONI LENGKAP ===================== */
+.modal-card{background:#fff; border-radius:var(--radius-lg); max-width:420px; width:92%; padding:1.75rem; text-align:center; transform:scale(.9); transition:transform .25s ease; box-shadow:var(--shadow-3)}
+.modal-overlay.is-open .modal-card{transform:scale(1)}
+
+@media (min-width: 820px){
+  .hero-grid{grid-template-columns:1.1fr .9fr; align-items:center}
+  .hero-copy h1{font-size:2.6rem}
+  .hero-visual{font-size:7rem}
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NIRBANA_CAD // ADMIN CONSOLE</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ====== GERBANG LOGIN ====== -->
+<div class="login-gate" id="loginGate">
+  <div class="login-card">
+    <div class="login-head">
+      <span>[!] SECURITY_CONTROLLER_W03</span>
+      <span class="led">■ [SYS_STATUS: ONLINE]</span>
+    </div>
+    <div class="login-body">
+      <h1>[N] NIRBANA STORE</h1>
+      <p class="sub">PANEL ADMIN // AUTH_GATEWAY_V2</p>
+      <div class="login-meta">
+        <span>LOC: JKT-ALPHA-01</span><span>NODE: NIRBANA_ROOT_SYS</span>
+      </div>
+      <div id="loginError" class="login-error" style="display:none"></div>
+      <form id="loginForm">
+        <label>&gt; [FIELD: USERNAME]
+          <input type="text" id="lUser" autocomplete="username" required value="admin">
+        </label>
+        <label>&gt; [FIELD: KATA_SANDI]
+          <input type="password" id="lPass" autocomplete="current-password" required>
+        </label>
+        <button class="btn-block" type="submit">[ MASUK ]</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SHELL ADMIN ====== -->
+<div class="shell" id="shell" style="display:none">
+  <aside class="sidebar">
+    <div class="sidebar-brand">NIRBANA_CAD V2.4<span class="status-dot">[● SYS_ONLINE]</span></div>
+    <nav class="module-index">
+      <span class="idx-label">// MODULE_INDEX</span>
+      <button class="nav-item is-active" data-view="dashboard">DASHBOARD <em>[00]</em></button>
+      <button class="nav-item" data-view="produk">PRODUK <em>[01]</em></button>
+      <button class="nav-item" data-view="pesanan">PESANAN <em id="badgePesanan">[02]</em></button>
+      <button class="nav-item" data-view="testimoni">TESTIMONI <em>[03]</em></button>
+      <button class="nav-item" data-view="notifikasi">NOTIFIKASI & CRM <em>[04]</em></button>
+      <button class="nav-item" data-view="pengaturan">PENGATURAN <em>[05]</em></button>
+    </nav>
+    <div class="sidebar-foot">
+      <div>[OP: ADMIN_ROOT]<br>ROLE: SUPERVISOR <span class="ok">AUTH_OK</span></div>
+      <button class="btn-logout" id="btnLogout">[ KELUAR ]</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div>SYS_LOC: 127.0.0.1:8080 // SESSION_EXP: <span id="sesExp">08:00:00</span></div>
+      <div class="topbar-user">[ USER: NIRBANA_DIRECTOR ]</div>
+    </header>
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="view is-active" id="view-dashboard">
+      <div class="view-head"><h1>00.0 // DASHBOARD_OVERVIEW</h1></div>
+      <div class="kpi-grid" id="kpiGrid"></div>
+      <div class="panel chart-panel">
+        <div class="panel-head">GRAFIK_PENJUALAN // 6 BULAN TERAKHIR</div>
+        <canvas id="chartBar" height="180"></canvas>
+      </div>
+      <div class="panel">
+        <div class="panel-head">PESANAN_TERBARU</div>
+        <table class="data-table" id="tblTerbaru"><thead><tr><th>ID_PESANAN</th><th>PRODUK</th><th>PEMESAN</th><th>STATUS</th></tr></thead><tbody></tbody></table>
+      </div>
+    </section>
+
+    <!-- ===== PRODUK ===== -->
+    <section class="view" id="view-produk">
+      <div class="view-head"><h1>01.0 // KATALOG_PRODUK</h1><button class="btn-primary" id="btnTambahProduk">[ + TAMBAH_PRODUK ]</button></div>
+      <div class="panel">
+        <table class="data-table" id="tblProduk">
+          <thead><tr><th>URUTAN</th><th>NAMA_PRODUK</th><th>KATEGORI</th><th>HARGA</th><th>STATUS</th><th>AKSI</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== PESANAN ===== -->
+    <section class="view" id="view-pesanan">
+      <div class="view-head">
+        <h1>02.0 // KELOLA_PESANAN</h1>
+        <div>
+          <button class="btn-ghost" id="btnEksporXlsx">[ UNDUH_XLSX ]</button>
+          <button class="btn-ghost" id="btnEksporPdf">[ UNDUH_PDF ]</button>
+        </div>
+      </div>
+      <div class="filter-row">
+        <input type="text" id="fCari" placeholder="SRC > Cari ID / Nama / WA...">
+        <select id="fStatus"><option value="SEMUA">STATUS: SEMUA</option><option>Baru</option><option>Dibayar</option><option>Selesai</option><option>Batal</option></select>
+        <input type="date" id="fDari"><input type="date" id="fSampai">
+        <button class="btn-primary" id="btnTerapkanFilter">[ TERAPKAN ]</button>
+      </div>
+      <div class="panel">
+        <table class="data-table" id="tblPesanan">
+          <thead><tr><th>ID_PESANAN</th><th>WAKTU</th><th>PRODUK</th><th>PEMESAN</th><th>WHATSAPP</th><th>STATUS</th><th>AKSI</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== TESTIMONI ===== -->
+    <section class="view" id="view-testimoni">
+      <div class="view-head"><h1>03.0 // KELOLA_TESTIMONI</h1><button class="btn-primary" id="btnTambahTestimoni">[ + TAMBAH_TESTIMONI ]</button></div>
+      <div class="testi-admin-grid" id="testiAdminGrid"></div>
+    </section>
+
+    <!-- ===== NOTIFIKASI & CRM ===== -->
+    <section class="view" id="view-notifikasi">
+      <div class="view-head"><h1>04.0 // NOTIFIKASI_WA // CRM_KONTAK</h1></div>
+      <div class="cards-2col">
+        <div class="panel">
+          <div class="panel-head">SEC-01 // GATEWAY FONNTE</div>
+          <div class="panel-body">
+            <label>[FIELD: TOKEN_FONNTE] <span class="tag">SHA_MASKED</span>
+              <div class="field-row"><input type="password" id="nTokenFonnte" placeholder="Tempel token baru untuk mengganti"><button class="btn-ghost" id="btnSimpanToken">[ SIMPAN ]</button></div>
+              <small id="tokenTersamar">// belum diisi</small>
+            </label>
+            <label class="switch-row"><input type="checkbox" id="nToggleAktif"> [ SAKLAR NOTIFIKASI WA AKTIF ]</label>
+            <div class="field-row"><input type="text" id="nNomorTes" placeholder="Nomor tes 08xxxxxxxxxx"><button class="btn-ghost" id="btnTes">[ KIRIM_TES ]</button></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">SEC-02 // CRM KONTAK</div>
+          <div class="panel-body">
+            <div class="field-row"><input type="text" id="crmCari" placeholder="SRC > Cari nama / WA..."><button class="btn-ghost" id="btnCrmSync">[ ↻ SINKRON ]</button></div>
+            <table class="data-table"><thead><tr><th>NAMA</th><th>WHATSAPP</th><th>JML_PESAN</th></tr></thead><tbody id="crmBody"></tbody></table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PENGATURAN ===== -->
+    <section class="view" id="view-pengaturan">
+      <div class="view-head"><h1>05.0 // PENGATURAN // CONFIG_ENGINE</h1><button class="btn-primary" id="btnSimpanPengaturan">[ SIMPAN_PERUBAHAN ]</button></div>
+      <div class="cards-2col">
+        <div class="panel">
+          <div class="panel-head">SEC-01 // KONTAK_WHATSAPP</div>
+          <div class="panel-body">
+            <label>[FIELD: NOMOR_WHATSAPP_ADMIN]<input type="text" data-k="NOMOR_WHATSAPP_ADMIN"></label>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">SEC-02 // REKENING_PEMBAYARAN</div>
+          <div class="panel-body">
+            <label>[FIELD: NAMA_BANK]<input type="text" data-k="NAMA_BANK"></label>
+            <label>[FIELD: NOMOR_REKENING]<input type="text" data-k="NOMOR_REKENING"></label>
+            <label>[FIELD: ATAS_NAMA]<input type="text" data-k="ATAS_NAMA_REKENING"></label>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">SEC-03 // TAMPILAN_HALAMAN</div>
+          <div class="panel-body">
+            <label>[FIELD: JUDUL_HALAMAN]<input type="text" data-k="JUDUL_HALAMAN"></label>
+            <label>[FIELD: TEKS_BANNER_PROMO]<input type="text" data-k="TEKS_BANNER_PROMO"></label>
+            <label class="switch-row"><input type="checkbox" data-k="TAMPILKAN_BANNER" data-bool="1"> TAMPILKAN BANNER</label>
+            <label>[FIELD: TEKS_DISCLAIMER_FOOTER]<textarea data-k="TEKS_DISCLAIMER_FOOTER"></textarea></label>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">SEC-04 // KEAMANAN_DAN_CACHE</div>
+          <div class="panel-body">
+            <button class="btn-ghost" id="btnFlushCache">[ FLUSH_CACHE_NOW ]</button>
+            <hr>
+            <label>[FIELD: KATA_SANDI_BARU]<input type="password" id="pSandiBaru" placeholder="Minimal 8 karakter"></label>
+            <button class="btn-ghost" id="btnGantiSandi">[ GANTI_KATA_SANDI ]</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ====== MODAL PRODUK ====== -->
+<div class="modal-overlay" id="modalProduk">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="mpTitle">TAMBAH_PRODUK</h3><button class="modal-x" data-close>✕</button></div>
+    <form id="formProduk">
+      <input type="hidden" id="pRow">
+      <label>[FIELD: NAMA_PRODUK]<input type="text" id="pNama" required></label>
+      <div class="field-row-2">
+        <label>[FIELD: KATEGORI]<select id="pKategori"><option>Jasa</option><option>Digital</option></select></label>
+        <label>[FIELD: LENCANA]<input type="text" id="pLencana" placeholder="Terlaris"></label>
+      </div>
+      <div class="field-row-2">
+        <label>[FIELD: HARGA_JUAL]<input type="number" id="pHarga" required></label>
+        <label>[FIELD: HARGA_CORET]<input type="number" id="pHargaCoret"></label>
+      </div>
+      <label>[FIELD: DESKRIPSI]<textarea id="pDeskripsi"></textarea></label>
+      <label>[FIELD: FITUR] <small>(pisahkan dengan |)</small><input type="text" id="pFitur" placeholder="1 Hari Kerja|E-Card Resmi"></label>
+      <label>[FIELD: GAMBAR] <small>(URL, pisahkan dengan | untuk slideshow)</small><input type="text" id="pGambar" placeholder="https://.../1.jpg|https://.../2.jpg"></label>
+      <label>[FIELD: URUTAN_TAMPIL]<input type="number" id="pUrutan" value="1"></label>
+      <button class="btn-block" type="submit">[ SIMPAN_PRODUK ]</button>
+    </form>
+  </div>
+</div>
+
+<!-- ====== MODAL TESTIMONI ====== -->
+<div class="modal-overlay" id="modalTestimoni">
+  <div class="modal-box">
+    <div class="modal-head"><h3>TAMBAH_TESTIMONI</h3><button class="modal-x" data-close>✕</button></div>
+    <form id="formTestimoni">
+      <input type="hidden" id="tRow">
+      <label>[FIELD: NAMA]<input type="text" id="tNama" required></label>
+      <label>[FIELD: PERAN]<input type="text" id="tPeran" placeholder="Pemilik Toko Kue Online"></label>
+      <label>[FIELD: ISI]<textarea id="tIsi" required></textarea></label>
+      <label>[FIELD: RATING]<select id="tRating"><option>5</option><option>4</option><option>3</option></select></label>
+      <button class="btn-block" type="submit">[ SIMPAN_TESTIMONI ]</button>
+    </form>
+  </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
